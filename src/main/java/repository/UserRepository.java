@@ -11,4 +11,6 @@ public interface UserRepository {
     void placeOrder(User user, Order order);
 
     void payOrder(User userById, Order orderById, Payment payment);
+
+    void save(User user);
 }

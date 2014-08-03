@@ -2,13 +2,16 @@ package domain;
 
 import exception.RecordNotFoundException;
 import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Entity("users")
 public class User {
     private List<Order> orders = new ArrayList<Order>();
+    @Id
     private ObjectId id;
 
     protected User(ObjectId id) {
@@ -25,6 +28,9 @@ public class User {
 
     public ObjectId getId() {
         return id;
+    }
+
+    public User() {
     }
 
     public Order getOrderById(ObjectId orderId) {
