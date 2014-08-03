@@ -9,21 +9,29 @@ import org.glassfish.jersey.moxy.xml.MoxyXmlFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import repository.ProductRepository;
 import repository.UserRepository;
 
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -32,11 +40,20 @@ public class OrderResourceTest extends JerseyTest{
     public static final String ORDER_ID = "1234567890abcdef123456ef";
     private static final String  USER_ID = "1234567890abcdef123456ab";
     public static final String ORDER_NOT_EXIST = "123456789009876543212345";
+    public static final String PAYMENT_ID = "126789090909090909090909";
     @Mock
     private UserRepository userRepository;
+
+    @Mock
+    private ProductRepository productRepository;
+
+    @Captor
+    private ArgumentCaptor<Order> orderArgumentCaptor;
+    @Captor
+    private ArgumentCaptor<User> userArgumentCaptor;
+
     private User user;
     private Order order;
-    private ObjectId objectId;
 
     @Override
     protected Application configure() {
@@ -48,6 +65,7 @@ public class OrderResourceTest extends JerseyTest{
                     @Override
                     protected void configure() {
                         bind(userRepository).to(UserRepository.class);
+                        bind(productRepository).to(ProductRepository.class);
                     }
                 })
                 .register(App.createMoxyJsonResolver())
@@ -64,11 +82,13 @@ public class OrderResourceTest extends JerseyTest{
     public void setUp() throws Exception {
         super.setUp();
         user = UserBuilder.BuildUser(new ObjectId(USER_ID));
-        OrderItem orderItem = new OrderItem(PRODUCT_ID, 2);
+        Product buildProduct = ProductBuilder.buildProduct(new ObjectId(PRODUCT_ID), "product one", 78.9);
+        OrderItem orderItem = new OrderItem(buildProduct, 2);
         order = OrderBuilder.buildOrder(ORDER_ID, USER_ID, "street one", 560.0);
         order.addOrderItem(orderItem);
+        Payment payment = PaymentBuilder.buildPayment(new ObjectId(PAYMENT_ID),789);
+        order.pay(payment);
         user.placeOrder(order);
-        objectId = new ObjectId(PRODUCT_ID);
     }
 
     @Test
@@ -129,6 +149,43 @@ public class OrderResourceTest extends JerseyTest{
         Response response = target("/users/"+USER_ID+"/orders/"+ ORDER_NOT_EXIST).request(MediaType.APPLICATION_XML_TYPE).get();
 
         assertThat(response.getStatus(),is(404));
+    }
 
+    @Test
+    @Ignore
+    public void should_return_201_for_post_one_order() throws Exception {
+        Product testProduct = ProductBuilder.buildProduct(new ObjectId(PRODUCT_ID), "productOne", 670.2);
+        when(userRepository.getUserById(any())).thenReturn(user);
+        when(productRepository.getProductById(any())).thenReturn(testProduct);
+
+        Map createdOrder = new HashMap(){{
+            put("deliveryAddress","street one zhouxuan");
+            Map orderItem = new HashMap(){{
+                put("id",PRODUCT_ID);
+                put("quantity",2);
+            }};
+            List orderItems = new ArrayList();
+            orderItems.add(orderItem);
+            put("orderItems", orderItems);
+        }};
+
+
+        Response response = target("/users/" + USER_ID + "/orders").request().post(Entity.entity(createdOrder, MediaType.APPLICATION_JSON));
+        Map vair = new HashMap<String,String>();
+        verify(userRepository).placeOrder(userArgumentCaptor.capture(),orderArgumentCaptor.capture());
+
+        assertThat(response.getStatus(), is(201));
+
+        assertThat(orderArgumentCaptor.getValue().getDeliveryAddress(),is("street one zhouxuan"));
+
+    }
+
+    @Test
+    public void should_return_200_for_get_payment() throws Exception {
+        when(userRepository.getUserById(any())).thenReturn(user);
+
+        Response response = target("/users/"+USER_ID+"/orders/"+ORDER_ID+"/payment").request(MediaType.APPLICATION_XML_TYPE).get();
+
+        assertThat(response.getStatus(),is(200));
     }
 }

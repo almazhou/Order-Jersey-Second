@@ -11,12 +11,14 @@ public class Order {
     private  double price;
     private List<OrderItem> orderItemList = new ArrayList<OrderItem>();
     private ObjectId id;
+    private Payment payment;
 
-    public Order(List<OrderItem> orderItemList) {
+    public Order(String deliveryAddress,List<OrderItem> orderItemList) {
+        this.deliveryAddress = deliveryAddress;
         this.orderItemList = orderItemList;
     }
 
-    public Order(String orderId, String userId, String deliveryAddress, double price){
+    protected Order(String orderId, String userId, String deliveryAddress, double price){
         this.id = new ObjectId(orderId);
         this.userId = new ObjectId(userId);
         this.deliveryAddress = deliveryAddress;
@@ -41,5 +43,13 @@ public class Order {
 
     public ObjectId getUserId() {
         return userId;
+    }
+
+    public void pay(Payment payment) {
+        this.payment = payment;
+    }
+
+    public Payment getPayment() {
+        return payment;
     }
 }

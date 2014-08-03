@@ -1,10 +1,10 @@
 package domain;
 
 public class OrderItem {
-    private final String productId;
-    private final int quantity;
+    private  Product productId;
+    private  int quantity;
 
-    public OrderItem(String productId, int quantity) {
+    public OrderItem(Product productId, int quantity) {
         this.productId = productId;
         this.quantity = quantity;
     }
