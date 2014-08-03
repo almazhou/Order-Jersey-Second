@@ -88,6 +88,22 @@ public class OrderResourceTest extends JerseyTest{
         assertThat(orderJson.get("deliveryAddress"),is("street one"));
         assertThat(((String)orderJson.get("uri")).contains("/users/"+USER_ID+"/orders/"+ORDER_ID),is(true));
     }
+    @Test
+    public void should_return_200_for_get_one_order() throws Exception {
+        when(userRepository.getUserById(any())).thenReturn(user);
+
+        Response response = target("/users/"+USER_ID+"/orders/"+ORDER_ID).request(MediaType.APPLICATION_JSON_TYPE).get();
+
+        assertThat(response.getStatus(),is(200));
+
+        Map orderJson = response.readEntity(Map.class);
+
+        assertThat(orderJson.get("id"),is(ORDER_ID));
+        assertThat(orderJson.get("userId"),is(USER_ID));
+        assertThat(orderJson.get("price"),is(560.0));
+        assertThat(orderJson.get("deliveryAddress"),is("street one"));
+        assertThat(((String)orderJson.get("uri")).contains("/users/"+USER_ID+"/orders/"+ORDER_ID),is(true));
+    }
 
     @Test
     public void should_return_200_for_get_all_order_xml() throws Exception {

@@ -30,6 +30,16 @@ public class OrderResource {
         List<Order> orders = userById.getOrders();
         List<OrderRef> orderRefs = orders.stream().map(order -> new OrderRef(order,uriInfo)).collect(Collectors.toList());
         return orderRefs;
+    }
 
+    @GET
+    @Path("/{orderId}")
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public OrderRef getOrderById(@Context UriInfo uriInfo, @PathParam("id") String id, @PathParam("orderId") String orderId) {
+        ObjectId userId = new ObjectId(id);
+        User userById = userRepository.getUserById(userId);
+        ObjectId orderObjectId = new ObjectId(orderId);
+        Order order = userById.getOrderById(orderObjectId);
+        return new OrderRef(order,uriInfo);
     }
 }
