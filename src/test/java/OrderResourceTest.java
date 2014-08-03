@@ -21,6 +21,7 @@ import repository.UserRepository;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
@@ -187,5 +188,14 @@ public class OrderResourceTest extends JerseyTest{
         Response response = target("/users/"+USER_ID+"/orders/"+ORDER_ID+"/payment").request(MediaType.APPLICATION_XML_TYPE).get();
 
         assertThat(response.getStatus(),is(200));
+    }
+
+    @Test
+    public void should_return_201_for_post_payment() throws Exception {
+        when(userRepository.getUserById(any())).thenReturn(user);
+
+        Response response = target("/users/" + USER_ID + "/orders/" + ORDER_ID + "/payment").request(MediaType.APPLICATION_FORM_URLENCODED_TYPE).post(Entity.form(new Form().param("amount","56")));
+
+        assertThat(response.getStatus(),is(201));
     }
 }

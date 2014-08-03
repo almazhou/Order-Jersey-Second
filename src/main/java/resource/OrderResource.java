@@ -12,10 +12,7 @@ import representation.PaymentRef;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.core.*;
 import java.net.URI;
 import java.util.List;
 import java.util.Map;
@@ -72,6 +69,18 @@ public class OrderResource {
         Order orderById = userById.getOrderById(new ObjectId(orderId));
         Payment payment = orderById.getPayment();
         return new PaymentRef(payment,uriInfo);
+    }
+
+    @POST
+    @Path("/{orderId}/payment")
+    @Consumes({MediaType.APPLICATION_FORM_URLENCODED})
+    public Response createPayment(@Context UriInfo uriInfo, @PathParam("id") String id, @PathParam("orderId") String orderId,Form form) {
+        User userById = userRepository.getUserById(new ObjectId(id));
+        Order orderById = userById.getOrderById(new ObjectId(orderId));
+        String amount = form.asMap().getFirst("amount");
+        Payment payment = new Payment(Double.valueOf(amount).doubleValue());
+        userRepository.payOrder(userById,orderById,payment);
+        return Response.created(uriInfo.getAbsolutePath()).build();
     }
 
 
