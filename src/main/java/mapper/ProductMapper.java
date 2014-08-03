@@ -1,6 +1,7 @@
 package mapper;
 
 import domain.Product;
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
 import repository.ProductRepository;
 
@@ -20,5 +21,10 @@ public class ProductMapper implements ProductRepository {
     @Override
     public List<Product> getProducts() {
         return dataStore.find(Product.class).asList();
+    }
+
+    @Override
+    public Product getProductById(ObjectId id) {
+        return null;
     }
 }

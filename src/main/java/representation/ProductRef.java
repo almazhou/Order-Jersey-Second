@@ -24,6 +24,17 @@ public class ProductRef {
         return product.getName();
     }
 
+    @XmlElement
+    public String getId(){
+        return product.getId().toString();
+    }
+
+    @XmlElement
+    public String getUri(){
+        return uriInfo.getAbsolutePath()+"/"+product.getId().toString();
+    }
+
+
 
 
 }

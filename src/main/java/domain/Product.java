@@ -17,6 +17,11 @@ public class Product {
         this.name = name;
     }
 
+    protected Product(ObjectId id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

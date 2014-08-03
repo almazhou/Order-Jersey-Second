@@ -1,4 +1,5 @@
 import domain.Product;
+import org.bson.types.ObjectId;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
@@ -40,6 +41,11 @@ public class App {
             @Override
             public List<Product> getProducts() {
                 return Arrays.asList(new Product("test"));
+            }
+
+            @Override
+            public Product getProductById(ObjectId id) {
+                return new Product("test");
             }
         };
 
