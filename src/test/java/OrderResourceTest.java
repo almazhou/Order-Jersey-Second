@@ -31,6 +31,7 @@ public class OrderResourceTest extends JerseyTest{
     public static final String PRODUCT_ID = "1234567890abcdef12345678";
     public static final String ORDER_ID = "1234567890abcdef123456ef";
     private static final String  USER_ID = "1234567890abcdef123456ab";
+    public static final String ORDER_NOT_EXIST = "123456789009876543212345";
     @Mock
     private UserRepository userRepository;
     private User user;
@@ -119,5 +120,15 @@ public class OrderResourceTest extends JerseyTest{
         assertThat(responseString.contains(ORDER_ID),is(true));
         assertThat(responseString.contains(USER_ID),is(true));
         assertThat(responseString.contains("560"),is(true));
+    }
+
+    @Test
+    public void should_return_404_when_order_not_exit() throws Exception {
+        when(userRepository.getUserById(any())).thenReturn(user);
+
+        Response response = target("/users/"+USER_ID+"/orders/"+ ORDER_NOT_EXIST).request(MediaType.APPLICATION_XML_TYPE).get();
+
+        assertThat(response.getStatus(),is(404));
+
     }
 }
