@@ -1,5 +1,7 @@
 import domain.Product;
 import domain.ProductBuilder;
+import exception.RecordNotFoundException;
+import exception.RecordNotFoundExceptionHandler;
 import org.bson.types.ObjectId;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.client.ClientConfig;
@@ -47,7 +49,8 @@ public class ProductResourceTest extends JerseyTest {
                         bind(productRepository).to(ProductRepository.class);
                     }
                 })
-                .register(App.createMoxyJsonResolver());
+                .register(App.createMoxyJsonResolver())
+                .register(RecordNotFoundExceptionHandler.class);
 
     }
 
@@ -60,7 +63,7 @@ public class ProductResourceTest extends JerseyTest {
     public void setUp() throws Exception {
         super.setUp();
         id = new ObjectId(PRODUCT_ID);
-        product = ProductBuilder.buildProduct(id, "test");
+        product = ProductBuilder.buildProduct(id, "test", 45.0);
     }
 
     @Test
@@ -75,6 +78,7 @@ public class ProductResourceTest extends JerseyTest {
         Map product = (Map) list.get(0);
 
         assertThat(product.get("name"),is("test"));
+        assertThat(product.get("price"),is(45.0));
 
     }
 
@@ -104,6 +108,15 @@ public class ProductResourceTest extends JerseyTest {
         assertThat(given.get("name"),is("test"));
         assertThat(given.get("id"),is(PRODUCT_ID));
         assertThat(((String)given.get("uri")).contains(path),is(true));
+
+    }
+   @Test
+    public void should_return_404_for_get_one_product_not_exist() throws Exception {
+        when(productRepository.getProductById(eq(id))).thenThrow(RecordNotFoundException.class);
+
+        String path = "/products/" + PRODUCT_ID;
+        Response response = target(path).request(MediaType.APPLICATION_JSON_TYPE).get();
+        assertThat(response.getStatus(),is(404));
 
     }
 }

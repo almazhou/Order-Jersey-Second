@@ -7,6 +7,7 @@ import org.mongodb.morphia.annotations.Id;
 @Entity("products")
 public class Product {
     private String name;
+    private double price;
     @Id
     private ObjectId id;
 
@@ -17,9 +18,10 @@ public class Product {
         this.name = name;
     }
 
-    protected Product(ObjectId id, String name) {
+    protected Product(ObjectId id, String name,double price) {
         this.id = id;
         this.name = name;
+        this.price = price;
     }
 
     public String getName() {
@@ -28,5 +30,9 @@ public class Product {
 
     public ObjectId getId() {
         return id;
+    }
+
+    public double getPrice() {
+        return price;
     }
 }

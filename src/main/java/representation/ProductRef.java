@@ -34,7 +34,9 @@ public class ProductRef {
         return uriInfo.getAbsolutePath()+"/"+product.getId().toString();
     }
 
-
-
+    @XmlElement
+    public double getPrice(){
+        return product.getPrice();
+    }
 
 }
