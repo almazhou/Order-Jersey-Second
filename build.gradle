@@ -59,7 +59,7 @@ dependencies {
 }
 
 task execute(type: JavaExec) {
-    main = "org.kiwi.App"
+    main = "App"
     classpath = sourceSets.main.runtimeClasspath
 }
 
@@ -76,7 +76,7 @@ task uberjar(type: Jar, dependsOn: jar) {
     exclude("META-INF/*.RSA")
 
     manifest {
-        attributes 'Main-Class': "org.kiwi.App"
+        attributes 'Main-Class': "App"
     }
 }
 
