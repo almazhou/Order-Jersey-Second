@@ -1,0 +1,10 @@
+{
+    "uri":"/products/1",
+    "name":"product one",
+    "id":1,
+    "orderId":1,
+    "quantity":2,
+    "price":500.09,
+    "description":"this is a clothes from EU",
+    "company":"T-mall"
+}

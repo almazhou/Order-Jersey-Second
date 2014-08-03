@@ -1,0 +1,272 @@
+<!DOCTYPE HTML><html><head><title>Order,Products and Payment System API API documentation</title><meta http-equiv=X-UA-Compatible content="IE=edge"><meta http-equiv=Content-Type content="text/html; charset=utf-8"><meta name=generator content="https://github.com/kevinrenskers/raml2html 0.30.0"><link rel=stylesheet href=http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css><link rel=stylesheet href=http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css><script type=text/javascript src=http://code.jquery.com/jquery-1.11.0.min.js></script><script type=text/javascript src=http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js></script><script type=text/javascript src=http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js></script><script type=text/javascript>
+        $(document).ready(function() {
+            $('.page-header pre code, .top-resource-description pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+
+            $('[data-toggle]').click(function() {
+                var selector = $(this).data('target') + ' pre code';
+                $(selector).each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });
+            });
+        });
+    </script><style>
+        .hljs {
+            background: transparent;
+        }
+        .parent {
+            color: #999;
+        }
+        .list-group-item > .badge {
+            float: none;
+            margin-right: 6px;
+        }
+        .panel-title > .methods {
+            float: right;
+        }
+        .badge {
+            border-radius: 0;
+            text-transform: uppercase;
+            width: 70px;
+            font-weight: normal;
+            color: #f3f3f6;
+            line-height: normal;
+        }
+        .badge_get {
+            background-color: #63a8e2;
+        }
+        .badge_post {
+            background-color: #6cbd7d;
+        }
+        .badge_put {
+            background-color: #22bac4;
+        }
+        .badge_delete {
+            background-color: #d26460;
+        }
+        .list-group, .panel-group {
+            margin-bottom: 0;
+        }
+        .panel-group .panel+.panel-white {
+            margin-top: 0;
+        }
+        .panel-group .panel-white {
+            border-bottom: 1px solid #F5F5F5;
+            border-radius: 0;
+        }
+        .panel-white:last-child {
+            border-bottom-color: white;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+        .panel-white .panel-heading {
+            background: white;
+        }
+        .tab-pane ul {
+            padding-left: 2em;
+        }
+        .tab-pane h2 {
+            font-size: 1.2em;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab-pane h3 {
+            font-size: 1.1em;
+        }
+        .tab-content {
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+        }
+        #sidebar {
+            margin-top: 30px;
+        }
+        .top-resource-description {
+            border-bottom: 1px solid #ddd;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+        .resource-description {
+            border-bottom: 1px solid #fcfcfc;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+        .panel > .panel-body > .panel-group > .panel:first-child .resource-description {
+            display: none;
+        }
+        .list-group .badge {
+            float: left;
+        }
+        .method_description {
+            margin-left: 85px;
+        }
+        .method_description p:last-child {
+            margin: 0;
+        }
+    </style></head><body data-spy=scroll data-target=#sidebar><div class=container><div class=row><div class=col-md-9 role=main><div class=page-header><h1>Order,Products and Payment System API API documentation</h1><p></p></div><div class="panel panel-default"><div class=panel-heading><h3 id=_products class=panel-title>/products</h3></div><div class=panel-body><div class=panel-group><div class="panel panel-white"><div class=panel-heading><h4 class=panel-title><a class=collapsed data-toggle=collapse href=#panel__products><span class=parent></span>/products</a> <span class=methods><a href=# data-toggle=modal data-target=#_products_get><span class="badge badge_get">get</span></a> <a href=# data-toggle=modal data-target=#_products_post><span class="badge badge_post">post</span></a></span></h4></div><div id=panel__products class="panel-collapse collapse"><div class=panel-body><div class=list-group><a href=# data-toggle=modal data-target=#_products_get class=list-group-item><span class="badge badge_get">get</span><div class=method_description><p>as a customer , I&#39;d like to see all the products in the system so that I can choose one to buy.</p></div><div class=clearfix></div></a> <a href=# data-toggle=modal data-target=#_products_post class=list-group-item><span class="badge badge_post">post</span><div class=method_description><p>as a admin, I&#39;d like to add one product to system so that customers can buy the product.</p></div><div class=clearfix></div></a></div></div></div><div class="modal fade" tabindex=0 id=_products_get><div class=modal-dialog><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal aria-hidden=true>&times;</button><h4 class=modal-title id=myModalLabel><span class="badge badge_get">get</span> <span class=parent></span>/products</h4></div><div class=modal-body><div class="alert alert-info"><p>as a customer , I&#39;d like to see all the products in the system so that I can choose one to buy.</p></div><ul class="nav nav-tabs"><li class=active><a href=#_products_get_request data-toggle=tab>Request</a></li><li><a href=#_products_get_response data-toggle=tab>Response</a></li></ul><div class=tab-content><div class="tab-pane active" id=_products_get_request></div><div class=tab-pane id=_products_get_response><h2>HTTP status code <a href=http://httpstatus.es/200 target=_blank>200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><small><strong>Example</strong>:<pre><code>[
+    {
+       "uri":"/products/1",
+        "id":"1234567890abcdef12345678",
+        "name":"product one",
+        "price":145.08
+    },
+    {
+        "uri":"/products/3",
+        "id":"1234567890abcdef12345679",
+        "name":"product two",
+        "price":100.89
+    },
+    {
+        "uri":"/products/1",
+        "id":"1234567890abcdef12345670",
+        "name":"product three",
+        "price":389.05
+    }
+
+]</code></pre></small></p></div></div></div></div></div></div><div class="modal fade" tabindex=0 id=_products_post><div class=modal-dialog><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal aria-hidden=true>&times;</button><h4 class=modal-title id=myModalLabel><span class="badge badge_post">post</span> <span class=parent></span>/products</h4></div><div class=modal-body><div class="alert alert-info"><p>as a admin, I&#39;d like to add one product to system so that customers can buy the product.</p></div><ul class="nav nav-tabs"><li class=active><a href=#_products_post_request data-toggle=tab>Request</a></li><li><a href=#_products_post_response data-toggle=tab>Response</a></li></ul><div class=tab-content><div class="tab-pane active" id=_products_post_request><h3>Body</h3><p><strong>Type: application/x-www-form-urlencoded</strong></p><strong>Form Parameters</strong><ul><li><strong>name</strong>: <em>(string)</em></li><li><strong>price</strong>: <em>(number)</em></li></ul></div><div class=tab-pane id=_products_post_response><h2>HTTP status code <a href=http://httpstatus.es/201 target=_blank>201</a></h2></div></div></div></div></div></div></div><div class="panel panel-white"><div class=panel-heading><h4 class=panel-title><a class=collapsed data-toggle=collapse href=#panel__products__id_><span class=parent>/products</span>/{id}</a> <span class=methods><a href=# data-toggle=modal data-target=#_products__id__get><span class="badge badge_get">get</span></a></span></h4></div><div id=panel__products__id_ class="panel-collapse collapse"><div class=panel-body><div class=list-group><a href=# data-toggle=modal data-target=#_products__id__get class=list-group-item><span class="badge badge_get">get</span><div class=method_description><p>as a customer , I&#39;d like to see the info of specific product so that I can decide if I will buy it.</p></div><div class=clearfix></div></a></div></div></div><div class="modal fade" tabindex=0 id=_products__id__get><div class=modal-dialog><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal aria-hidden=true>&times;</button><h4 class=modal-title id=myModalLabel><span class="badge badge_get">get</span> <span class=parent>/products</span>/{id}</h4></div><div class=modal-body><div class="alert alert-info"><p>as a customer , I&#39;d like to see the info of specific product so that I can decide if I will buy it.</p></div><ul class="nav nav-tabs"><li class=active><a href=#_products__id__get_request data-toggle=tab>Request</a></li><li><a href=#_products__id__get_response data-toggle=tab>Response</a></li></ul><div class=tab-content><div class="tab-pane active" id=_products__id__get_request><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul></div><div class=tab-pane id=_products__id__get_response><h2>HTTP status code <a href=http://httpstatus.es/200 target=_blank>200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><small><strong>Example</strong>:<pre><code>{
+    "uri":"/products/3",
+    "id":"1234567890abcdef12345679",
+    "name":"product two",
+    "price":100.89
+}</code></pre></small></p></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class=panel-heading><h3 id=_users class=panel-title>/users</h3></div><div class=panel-body><div class=panel-group><div class="panel panel-white"><div class=panel-heading><h4 class=panel-title><a class=collapsed data-toggle=collapse href=#panel__users><span class=parent></span>/users</a> <span class=methods></span></h4></div><div id=panel__users class="panel-collapse collapse"><div class=panel-body><div class=list-group></div></div></div></div><div class="panel panel-white"><div class=panel-heading><h4 class=panel-title><a class=collapsed data-toggle=collapse href=#panel__users__id_><span class=parent>/users</span>/{id}</a> <span class=methods></span></h4></div><div id=panel__users__id_ class="panel-collapse collapse"><div class=panel-body><div class=list-group></div></div></div></div><div class="panel panel-white"><div class=panel-heading><h4 class=panel-title><a class=collapsed data-toggle=collapse href=#panel__users__id__orders><span class=parent>/users/{id}</span>/orders</a> <span class=methods><a href=# data-toggle=modal data-target=#_users__id__orders_get><span class="badge badge_get">get</span></a> <a href=# data-toggle=modal data-target=#_users__id__orders_post><span class="badge badge_post">post</span></a></span></h4></div><div id=panel__users__id__orders class="panel-collapse collapse"><div class=panel-body><div class=list-group><a href=# data-toggle=modal data-target=#_users__id__orders_get class=list-group-item><span class="badge badge_get">get</span><div class=method_description><p>As a customer, I&#39;d like to see all the orders that I have purchased so that I know my buying histories.</p></div><div class=clearfix></div></a> <a href=# data-toggle=modal data-target=#_users__id__orders_post class=list-group-item><span class="badge badge_post">post</span><div class=method_description><p>as a customer, I&#39;d like to purchase a order so that I can buy products on line</p></div><div class=clearfix></div></a></div></div></div><div class="modal fade" tabindex=0 id=_users__id__orders_get><div class=modal-dialog><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal aria-hidden=true>&times;</button><h4 class=modal-title id=myModalLabel><span class="badge badge_get">get</span> <span class=parent>/users/{id}</span>/orders</h4></div><div class=modal-body><div class="alert alert-info"><p>As a customer, I&#39;d like to see all the orders that I have purchased so that I know my buying histories.</p></div><ul class="nav nav-tabs"><li class=active><a href=#_users__id__orders_get_request data-toggle=tab>Request</a></li><li><a href=#_users__id__orders_get_response data-toggle=tab>Response</a></li></ul><div class=tab-content><div class="tab-pane active" id=_users__id__orders_get_request><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul></div><div class=tab-pane id=_users__id__orders_get_response><h2>HTTP status code <a href=http://httpstatus.es/200 target=_blank>200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><small><strong>Example</strong>:<pre><code>[
+    {
+        "uri":"/users/1/orders/1",
+        "id":1,
+        "userId":1,
+        "total_cost":54.90,
+        "deliveryAddress":"street one",
+        "orderItems":[
+            {
+                "uri":"/products/1",
+                "name":"product one",
+                "id":1,
+                "quantity":2,
+                "price":500.09
+            },
+            {
+                "uri":"/products/1",
+                "name":"product one",
+                "id":1,
+                "quantity":2,
+                "price":500.09
+            }
+        ],
+        "payment":{
+            "uri":"/users/1/orders/1/payment",
+            "amount":500.09,
+            "bank":"ICBC"
+        },
+        "date": "2013-05-09"
+    },
+    {
+        "uri":"/users/1/orders/1",
+        "id":1,
+        "userId":1,
+        "total_cost":54.90,
+        "deliveryAddress":"street two",
+        "orderItems":[
+            {
+                "uri":"/products/1",
+                "name":"product one",
+                "id":1,
+                "quantity":2,
+                "price":500.09
+            },
+            {
+                "uri":"/products/1",
+                "name":"product one",
+                "id":1,
+                "quantity":2,
+                "price":500.09
+            }
+        ],
+        "payment":{
+            "uri":"/users/1/orders/1/payment",
+            "amount":500.09,
+            "bank":"ICBC"
+        },
+        "date": "2013-05-09"
+    }
+]</code></pre></small></p></div></div></div></div></div></div><div class="modal fade" tabindex=0 id=_users__id__orders_post><div class=modal-dialog><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal aria-hidden=true>&times;</button><h4 class=modal-title id=myModalLabel><span class="badge badge_post">post</span> <span class=parent>/users/{id}</span>/orders</h4></div><div class=modal-body><div class="alert alert-info"><p>as a customer, I&#39;d like to purchase a order so that I can buy products on line</p></div><ul class="nav nav-tabs"><li class=active><a href=#_users__id__orders_post_request data-toggle=tab>Request</a></li><li><a href=#_users__id__orders_post_response data-toggle=tab>Response</a></li></ul><div class=tab-content><div class="tab-pane active" id=_users__id__orders_post_request><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><small><strong>Example</strong>:<pre><code>{
+    "total_cost":54.90,
+    "deliveryAddress":"street one",
+    "orderItems":[
+        {
+            "name":"product one",
+            "id":1,
+            "quantity":2
+        },
+        {
+            "name":"product one",
+            "id":1,
+            "quantity":2
+        }
+    ],
+    "payment":{
+        "amount":500.09,
+        "bank":"ICBC"
+    }
+}</code></pre></small></p></div><div class=tab-pane id=_users__id__orders_post_response><h2>HTTP status code <a href=http://httpstatus.es/201 target=_blank>201</a></h2></div></div></div></div></div></div></div><div class="panel panel-white"><div class=panel-heading><h4 class=panel-title><a class=collapsed data-toggle=collapse href=#panel__users__id__orders__orderId_><span class=parent>/users/{id}/orders</span>/{orderId}</a> <span class=methods><a href=# data-toggle=modal data-target=#_users__id__orders__orderId__get><span class="badge badge_get">get</span></a></span></h4></div><div id=panel__users__id__orders__orderId_ class="panel-collapse collapse"><div class=panel-body><div class=list-group><a href=# data-toggle=modal data-target=#_users__id__orders__orderId__get class=list-group-item><span class="badge badge_get">get</span><div class=method_description><p>as a customer, I&#39;d like to see specific order so that I know specific info of that order</p></div><div class=clearfix></div></a></div></div></div><div class="modal fade" tabindex=0 id=_users__id__orders__orderId__get><div class=modal-dialog><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal aria-hidden=true>&times;</button><h4 class=modal-title id=myModalLabel><span class="badge badge_get">get</span> <span class=parent>/users/{id}/orders</span>/{orderId}</h4></div><div class=modal-body><div class="alert alert-info"><p>as a customer, I&#39;d like to see specific order so that I know specific info of that order</p></div><ul class="nav nav-tabs"><li class=active><a href=#_users__id__orders__orderId__get_request data-toggle=tab>Request</a></li><li><a href=#_users__id__orders__orderId__get_response data-toggle=tab>Response</a></li></ul><div class=tab-content><div class="tab-pane active" id=_users__id__orders__orderId__get_request><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li><li><strong>orderId</strong>: <em>required (string)</em></li></ul></div><div class=tab-pane id=_users__id__orders__orderId__get_response><h2>HTTP status code <a href=http://httpstatus.es/200 target=_blank>200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><small><strong>Example</strong>:<pre><code>{
+    "uri":"/users/1/orders/1",
+    "id":1,
+    "userId":1,
+    "total_cost":54.90,
+    "deliveryAddress":"street one",
+    "orderItems":[
+        {
+            "uri":"/products/1",
+            "name":"product one",
+            "id":1,
+            "quantity":2,
+            "price":500.09
+        },
+        {
+            "uri":"/products/1",
+            "name":"product one",
+            "id":1,
+            "quantity":2,
+            "price":500.09
+        }
+    ],
+    "payment":{
+        "uri":"/users/1/orders/1/payment",
+        "amount":500.09,
+        "bank":"ICBC"
+    },
+    "date": "2013-05-09"
+}</code></pre></small></p></div></div></div></div></div></div></div><div class="panel panel-white"><div class=panel-heading><h4 class=panel-title><a class=collapsed data-toggle=collapse href=#panel__users__id__orders__orderId__orderItems><span class=parent>/users/{id}/orders/{orderId}</span>/orderItems</a> <span class=methods><a href=# data-toggle=modal data-target=#_users__id__orders__orderId__orderItems_get><span class="badge badge_get">get</span></a></span></h4></div><div id=panel__users__id__orders__orderId__orderItems class="panel-collapse collapse"><div class=panel-body><div class=list-group><a href=# data-toggle=modal data-target=#_users__id__orders__orderId__orderItems_get class=list-group-item><span class="badge badge_get">get</span><div class=method_description><p>as a customer, I&#39;d like to see all the items that I have bought in this order.</p></div><div class=clearfix></div></a></div></div></div><div class="modal fade" tabindex=0 id=_users__id__orders__orderId__orderItems_get><div class=modal-dialog><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal aria-hidden=true>&times;</button><h4 class=modal-title id=myModalLabel><span class="badge badge_get">get</span> <span class=parent>/users/{id}/orders/{orderId}</span>/orderItems</h4></div><div class=modal-body><div class="alert alert-info"><p>as a customer, I&#39;d like to see all the items that I have bought in this order.</p></div><ul class="nav nav-tabs"><li class=active><a href=#_users__id__orders__orderId__orderItems_get_request data-toggle=tab>Request</a></li><li><a href=#_users__id__orders__orderId__orderItems_get_response data-toggle=tab>Response</a></li></ul><div class=tab-content><div class="tab-pane active" id=_users__id__orders__orderId__orderItems_get_request><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li><li><strong>orderId</strong>: <em>required (string)</em></li></ul></div><div class=tab-pane id=_users__id__orders__orderId__orderItems_get_response><h2>HTTP status code <a href=http://httpstatus.es/200 target=_blank>200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><small><strong>Example</strong>:<pre><code>[
+    {
+        "uri":"/products/1",
+        "name":"product one",
+        "id":1,
+        "orderId":1,
+        "quantity":2,
+        "price":500.09
+    },
+    {
+        "uri":"/products/2",
+        "name":"product one",
+        "id":2,
+        "orderId":2,
+        "quantity":3,
+        "price":500.09
+    }
+]</code></pre></small></p></div></div></div></div></div></div></div><div class="panel panel-white"><div class=panel-heading><h4 class=panel-title><a class=collapsed data-toggle=collapse href=#panel__users__id__orders__orderId__orderItems__id_><span class=parent>/users/{id}/orders/{orderId}/orderItems</span>/{id}</a> <span class=methods><a href=# data-toggle=modal data-target=#_users__id__orders__orderId__orderItems__id__get><span class="badge badge_get">get</span></a></span></h4></div><div id=panel__users__id__orders__orderId__orderItems__id_ class="panel-collapse collapse"><div class=panel-body><div class=list-group><a href=# data-toggle=modal data-target=#_users__id__orders__orderId__orderItems__id__get class=list-group-item><span class="badge badge_get">get</span><div class=method_description><p>as a customer,I&#39;d like to see the detailed info of this order item.</p></div><div class=clearfix></div></a></div></div></div><div class="modal fade" tabindex=0 id=_users__id__orders__orderId__orderItems__id__get><div class=modal-dialog><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal aria-hidden=true>&times;</button><h4 class=modal-title id=myModalLabel><span class="badge badge_get">get</span> <span class=parent>/users/{id}/orders/{orderId}/orderItems</span>/{id}</h4></div><div class=modal-body><div class="alert alert-info"><p>as a customer,I&#39;d like to see the detailed info of this order item.</p></div><ul class="nav nav-tabs"><li class=active><a href=#_users__id__orders__orderId__orderItems__id__get_request data-toggle=tab>Request</a></li><li><a href=#_users__id__orders__orderId__orderItems__id__get_response data-toggle=tab>Response</a></li></ul><div class=tab-content><div class="tab-pane active" id=_users__id__orders__orderId__orderItems__id__get_request><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li><li><strong>orderId</strong>: <em>required (string)</em></li><li><strong>id</strong>: <em>required (string)</em></li></ul></div><div class=tab-pane id=_users__id__orders__orderId__orderItems__id__get_response><h2>HTTP status code <a href=http://httpstatus.es/200 target=_blank>200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><small><strong>Example</strong>:<pre><code>{
+    "uri":"/products/1",
+    "name":"product one",
+    "id":1,
+    "orderId":1,
+    "quantity":2,
+    "price":500.09,
+    "description":"this is a clothes from EU",
+    "company":"T-mall"
+}</code></pre></small></p></div></div></div></div></div></div></div><div class="panel panel-white"><div class=panel-heading><h4 class=panel-title><a class=collapsed data-toggle=collapse href=#panel__users__id__orders__orderId__payment><span class=parent>/users/{id}/orders/{orderId}</span>/payment</a> <span class=methods><a href=# data-toggle=modal data-target=#_users__id__orders__orderId__payment_get><span class="badge badge_get">get</span></a> <a href=# data-toggle=modal data-target=#_users__id__orders__orderId__payment_post><span class="badge badge_post">post</span></a></span></h4></div><div id=panel__users__id__orders__orderId__payment class="panel-collapse collapse"><div class=panel-body><div class=list-group><a href=# data-toggle=modal data-target=#_users__id__orders__orderId__payment_get class=list-group-item><span class="badge badge_get">get</span><div class=method_description><p>as a customer, I&#39;d like to see how much money I have paid for specific order so that I can manage my money properly</p></div><div class=clearfix></div></a> <a href=# data-toggle=modal data-target=#_users__id__orders__orderId__payment_post class=list-group-item><span class="badge badge_post">post</span><div class=method_description><p>as a customer, I&#39;d like to pay my specific orders so that I can get purchase that order.</p></div><div class=clearfix></div></a></div></div></div><div class="modal fade" tabindex=0 id=_users__id__orders__orderId__payment_get><div class=modal-dialog><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal aria-hidden=true>&times;</button><h4 class=modal-title id=myModalLabel><span class="badge badge_get">get</span> <span class=parent>/users/{id}/orders/{orderId}</span>/payment</h4></div><div class=modal-body><div class="alert alert-info"><p>as a customer, I&#39;d like to see how much money I have paid for specific order so that I can manage my money properly</p></div><ul class="nav nav-tabs"><li class=active><a href=#_users__id__orders__orderId__payment_get_request data-toggle=tab>Request</a></li><li><a href=#_users__id__orders__orderId__payment_get_response data-toggle=tab>Response</a></li></ul><div class=tab-content><div class="tab-pane active" id=_users__id__orders__orderId__payment_get_request><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li><li><strong>orderId</strong>: <em>required (string)</em></li></ul></div><div class=tab-pane id=_users__id__orders__orderId__payment_get_response><h2>HTTP status code <a href=http://httpstatus.es/200 target=_blank>200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><small><strong>Example</strong>:<pre><code>{
+    "uri":"/users/1/orders/1/payment",
+    "amount":450,
+    "bank":"ICBC",
+    "date":"2014-09-15"
+}</code></pre></small></p></div></div></div></div></div></div><div class="modal fade" tabindex=0 id=_users__id__orders__orderId__payment_post><div class=modal-dialog><div class=modal-content><div class=modal-header><button type=button class=close data-dismiss=modal aria-hidden=true>&times;</button><h4 class=modal-title id=myModalLabel><span class="badge badge_post">post</span> <span class=parent>/users/{id}/orders/{orderId}</span>/payment</h4></div><div class=modal-body><div class="alert alert-info"><p>as a customer, I&#39;d like to pay my specific orders so that I can get purchase that order.</p></div><ul class="nav nav-tabs"><li class=active><a href=#_users__id__orders__orderId__payment_post_request data-toggle=tab>Request</a></li><li><a href=#_users__id__orders__orderId__payment_post_response data-toggle=tab>Response</a></li></ul><div class=tab-content><div class="tab-pane active" id=_users__id__orders__orderId__payment_post_request><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li><li><strong>orderId</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Type: application/x-www-form-urlencoded</strong></p><strong>Form Parameters</strong><ul><li><strong>amount</strong>: <em>(number)</em></li><li><strong>bank</strong>: <em>(string)</em></li></ul></div><div class=tab-pane id=_users__id__orders__orderId__payment_post_response><h2>HTTP status code <a href=http://httpstatus.es/201 target=_blank>201</a></h2></div></div></div></div></div></div></div></div></div></div></div><div class=col-md-3><div id=sidebar class="hidden-print affix" role=complementary><ul class="nav nav-pills nav-stacked"><li><a href=#_products>/products</a></li><li><a href=#_users>/users</a></li></ul></div></div></div></div></body></html>

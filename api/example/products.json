@@ -1,0 +1,21 @@
+[
+    {
+       "uri":"/products/1",
+        "id":"1234567890abcdef12345678",
+        "name":"product one",
+        "price":145.08
+    },
+    {
+        "uri":"/products/3",
+        "id":"1234567890abcdef12345679",
+        "name":"product two",
+        "price":100.89
+    },
+    {
+        "uri":"/products/1",
+        "id":"1234567890abcdef12345670",
+        "name":"product three",
+        "price":389.05
+    }
+
+]

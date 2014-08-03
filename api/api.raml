@@ -1,0 +1,98 @@
+#%RAML 0.8
+title: Order,Products and Payment System API
+mediaType: application/json
+
+/products:
+  get:
+    description: as a customer , I'd like to see all the products in the system so that I can choose one to buy.
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include example/products.json
+  post:
+    description: as a admin, I'd like to add one product to system so that customers can buy the product.
+    body:
+      application/x-www-form-urlencoded:
+        formParameters:
+          name:
+            type: string
+          price:
+            type: number
+    responses:
+      201:
+  /{id}:
+    get:
+      description: as a customer , I'd like to see the info of specific product so that I can decide if I will buy it.
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include example/product.json
+/users:
+  /{id}:
+    /orders:
+      get:
+        description: As a customer, I'd like to see all the orders that I have purchased so that I know my buying histories.
+        responses:
+          200:
+            body:
+              application/json:
+                example: !include example/orders.json
+
+      post:
+        description: as a customer, I'd like to purchase a order so that I can buy products on line
+        body:
+          application/json:
+            example: !include example/order-post.json
+        responses:
+          201:
+
+      /{orderId}:
+        get:
+          description: as a customer, I'd like to see specific order so that I know specific info of that order
+          responses:
+            200:
+              body:
+                application/json:
+                  example: !include example/order.json
+        /orderItems:
+            get:
+              description: as a customer, I'd like to see all the items that I have bought in this order.
+              responses:
+                200:
+                  body:
+                    application/json:
+                        example: !include example/orderItems.json
+            /{id}:
+               get:
+                 description: as a customer,I'd like to see the detailed info of this order item.
+                 responses:
+                   200:
+                     body:
+                       application/json:
+                         example: !include example/orderItem.json
+
+        /payment:
+          get:
+            description: as a customer, I'd like to see how much money I have paid for specific order so that I can manage my money properly
+            responses:
+              200:
+                body:
+                  application/json:
+                    example: !include example/payment.json
+          post:
+            description: as a customer, I'd like to pay my specific orders so that I can get purchase that order.
+            body:
+              application/x-www-form-urlencoded:
+                formParameters:
+                  amount:
+                    type: number
+                  bank:
+                    type: string
+            responses:
+              201:
+
+
+
+

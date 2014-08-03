@@ -1,0 +1,6 @@
+{
+    "uri":"/users/1/orders/1/payment",
+    "amount":450,
+    "bank":"ICBC",
+    "date":"2014-09-15"
+}
