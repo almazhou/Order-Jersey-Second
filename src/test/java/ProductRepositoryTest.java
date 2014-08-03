@@ -26,8 +26,8 @@ public class ProductRepositoryTest {
 
     @Test
     public void test_get_save_product() throws Exception {
-        Product product = new Product("test");
-        productMapper.save(product);
+        Product product = new Product("test",78.0);
+        productMapper.saveProduct(product);
 
         ObjectId id = product.getId();
         assertNotNull(id);
@@ -35,8 +35,8 @@ public class ProductRepositoryTest {
 
     @Test
     public void test_get_all_products(){
-        Product product = new Product("test");
-        productMapper.save(product);
+        Product product = new Product("test",89.2);
+        productMapper.saveProduct(product);
         List<Product> products = productMapper.getProducts();
         assertThat(products.get(0).getId(),is(product.getId()));
     }

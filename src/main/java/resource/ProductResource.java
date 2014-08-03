@@ -6,13 +6,9 @@ import repository.ProductRepository;
 import representation.ProductRef;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +23,20 @@ public class ProductResource {
         List<Product> products = productRepository.getProducts();
         List<ProductRef> collect = products.stream().map(product -> new ProductRef(product, uriInfo)).collect(Collectors.toList());
         return collect;
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response saveProduct(@Context UriInfo uriInfo, Form form){
+        String name = form.asMap().getFirst("name");
+        double price = Double.parseDouble(String.valueOf(form.asMap().getFirst("price")));
+        Product product = new Product(name, price);
+        productRepository.saveProduct(product);
+
+        ObjectId id = product.getId();
+        String productId = id == null ? "0" : id.toString();
+
+        return Response.created(URI.create(uriInfo.getAbsolutePath()+"/"+ productId)).build();
     }
 
     @GET

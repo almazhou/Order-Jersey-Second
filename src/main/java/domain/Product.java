@@ -14,8 +14,9 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name) {
+    public Product(String name,double price) {
         this.name = name;
+        this.price = price;
     }
 
     protected Product(ObjectId id, String name,double price) {

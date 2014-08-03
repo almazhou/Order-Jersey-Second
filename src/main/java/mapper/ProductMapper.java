@@ -14,7 +14,8 @@ public class ProductMapper implements ProductRepository {
         this.dataStore = dataStore;
     }
 
-    public void save(Product product) {
+    @Override
+    public void saveProduct(Product product) {
         dataStore.save(product);
     }
 
@@ -27,4 +28,5 @@ public class ProductMapper implements ProductRepository {
     public Product getProductById(ObjectId id) {
         return null;
     }
+
 }

@@ -40,12 +40,17 @@ public class App {
         ProductRepository productRepository = new ProductRepository() {
             @Override
             public List<Product> getProducts() {
-                return Arrays.asList(new Product("test"));
+                return Arrays.asList(new Product("test",67.0));
             }
 
             @Override
             public Product getProductById(ObjectId id) {
-                return new Product("test");
+                return new Product("test",89.0);
+            }
+
+            @Override
+            public void saveProduct(Product product) {
+
             }
         };
 

@@ -13,11 +13,15 @@ import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import repository.ProductRepository;
 
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Arrays;
@@ -27,6 +31,7 @@ import java.util.Map;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -34,6 +39,10 @@ public class ProductResourceTest extends JerseyTest {
     public static final String PRODUCT_ID = "1234567890abcdef12345678";
     @Mock
     ProductRepository productRepository;
+
+    @Captor
+    ArgumentCaptor<Product> productArgumentCaptor;
+
     private ObjectId id;
     private Product product;
 
@@ -117,6 +126,15 @@ public class ProductResourceTest extends JerseyTest {
         String path = "/products/" + PRODUCT_ID;
         Response response = target(path).request(MediaType.APPLICATION_JSON_TYPE).get();
         assertThat(response.getStatus(),is(404));
+    }
 
+    @Test
+    public void should_return_201_for_post_one_product() throws Exception {
+        Response response = target("/products").request(MediaType.APPLICATION_FORM_URLENCODED_TYPE).post(Entity.form(new Form().param("name", "test").param("price","67.9")));
+        verify(productRepository).saveProduct(productArgumentCaptor.capture());
+
+        assertThat(response.getStatus(),is(201));
+        assertThat(productArgumentCaptor.getValue().getPrice(),is(67.9));
+        assertThat(productArgumentCaptor.getValue().getName(),is("test"));
     }
 }
