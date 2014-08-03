@@ -7,6 +7,7 @@ import domain.User;
 import org.bson.types.ObjectId;
 import repository.ProductRepository;
 import repository.UserRepository;
+import representation.OrderItemRef;
 import representation.OrderRef;
 import representation.PaymentRef;
 
@@ -69,6 +70,16 @@ public class OrderResource {
         Order orderById = userById.getOrderById(new ObjectId(orderId));
         Payment payment = orderById.getPayment();
         return new PaymentRef(payment,uriInfo);
+    }
+    @GET
+    @Path("/{orderId}/order-items")
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public List<OrderItemRef> getOrderItems(@Context UriInfo uriInfo, @PathParam("id") String id, @PathParam("orderId") String orderId) {
+        User userById = userRepository.getUserById(new ObjectId(id));
+        Order orderById = userById.getOrderById(new ObjectId(orderId));
+        List<OrderItem> orderItems = orderById.getOrderItems();
+        List<OrderItemRef> orderItemsRef = orderItems.stream().map(item -> new OrderItemRef(item, uriInfo)).collect(Collectors.toList());
+        return  orderItemsRef;
     }
 
     @POST

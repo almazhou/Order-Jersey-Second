@@ -198,4 +198,14 @@ public class OrderResourceTest extends JerseyTest{
 
         assertThat(response.getStatus(),is(201));
     }
+
+    @Test
+    public void should_return_200_for_get_all_order_items() throws Exception {
+        when(userRepository.getUserById(any())).thenReturn(user);
+
+        Response response = target("/users/"+USER_ID+"/orders/"+ORDER_ID+"/order-items").request(MediaType.APPLICATION_XML_TYPE).get();
+
+        assertThat(response.getStatus(),is(200));
+
+    }
 }

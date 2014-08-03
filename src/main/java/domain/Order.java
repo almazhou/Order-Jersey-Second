@@ -9,13 +9,13 @@ public class Order {
     private  ObjectId userId;
     private  String deliveryAddress;
     private  double price;
-    private List<OrderItem> orderItemList = new ArrayList<OrderItem>();
+    private List<OrderItem> orderItems = new ArrayList<OrderItem>();
     private ObjectId id;
     private Payment payment;
 
-    public Order(String deliveryAddress,List<OrderItem> orderItemList) {
+    public Order(String deliveryAddress,List<OrderItem> orderItems) {
         this.deliveryAddress = deliveryAddress;
-        this.orderItemList = orderItemList;
+        this.orderItems = orderItems;
     }
 
     protected Order(String orderId, String userId, String deliveryAddress, double price){
@@ -26,7 +26,7 @@ public class Order {
     }
 
     public void addOrderItem(OrderItem orderItem) {
-        this.orderItemList.add(orderItem);
+        this.orderItems.add(orderItem);
     }
 
     public Object getId() {
@@ -51,5 +51,9 @@ public class Order {
 
     public Payment getPayment() {
         return payment;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
     }
 }
