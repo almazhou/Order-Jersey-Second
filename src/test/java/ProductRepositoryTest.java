@@ -40,6 +40,19 @@ public class ProductRepositoryTest {
         List<Product> products = productMapper.getProducts();
         assertThat(products.get(0).getId(),is(product.getId()));
     }
+
+    @Test
+    public void test_get_product_by_id() throws Exception {
+        Product product = new Product("test",89.2);
+        productMapper.saveProduct(product);
+
+        Product productById = productMapper.getProductById(product.getId());
+
+        assertThat(productById.getId(),is(product.getId()));
+        assertThat(productById.getName(),is(product.getName()));
+
+    }
+
     @After
     public void tearDown() throws Exception {
         dataStore.getCollection(Product.class).drop();

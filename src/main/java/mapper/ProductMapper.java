@@ -26,7 +26,7 @@ public class ProductMapper implements ProductRepository {
 
     @Override
     public Product getProductById(ObjectId id) {
-        return null;
+        return dataStore.get(Product.class,id);
     }
 
 }
